@@ -1,10 +1,7 @@
 Rendu du projet LIIFLC 2017-2018
 ================================
 
-BRANDON   Romuald   #123456
-THIEL     Sylvain   #456789
 
-Voir http://liris.cnrs.fr/sylvain.brandel/wiki/doku.php?id=ens:liflf:projet
 
 Contenu de l'archive
 --------------------
