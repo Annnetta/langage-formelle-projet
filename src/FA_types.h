@@ -32,16 +32,16 @@ struct sAutoNDE{
   // état initial
 
   etatset_t finaux;
-  // états finaux : finaux_t peut être un int*, un tableau dynamique comme vector<int>
-  // ou une autre structure de donnée de votre choix.
+  // états finaux : un tableau dynamique comme vector<int>
 
   trans_t trans;
-  // matrice de transition : trans_t peut être un int***, une structure dynamique 3D comme vector< vector< set<int> > >
-  // ou une autre structure de donnée de votre choix.
+  // matrice de transition : trans_t est une structure dynamique 3D 
+  //comme vector< vector< set<int> > >
+ 
   
   epsilon_t epsilon; 
-  // transitions spontanées : epsilon_t peut être un int**, une structure dynamique 2D comme vector< set<int> >
-  // ou une autre structure de donnée de votre choix.
+  // transitions spontanées : epsilon_t est une structure dynamique 2D 
+  //comme vector< set<int> >
 };
 
 //******************************************************************************

@@ -2,6 +2,9 @@
 
 #include <iostream>
 #include <algorithm>
+#include <string.h>
+#include <stdio.h>
+
 
 #include "FA_types.h"
 #include "FA_tools.h"
@@ -17,6 +20,19 @@
 
 #include "Minimize.h"
 #include "Equivalence.h"
+
+using namespace std;
+
+////////////////////////////////////////////////////////////////////////////////
+//cette fctn est appele si "tester" est passe en parametre dans programme
+// ./ndet tester
+void tester(){
+  string automate_path="AND1";
+  sAutoNDE automate_d;
+  FromFile(automate_d, "exemples/" + automate_path+ ".txt");
+  if(EstDeterministe(automate_d)){cout<<"automate est deterministe"<<endl;}
+    else{cout<<"Non deterministe"<<endl;}
+}
 
 ////////////////////////////////////////////////////////////////////////////////
 
@@ -36,6 +52,11 @@ void Help(std::ostream& out, char *s){
 ////////////////////////////////////////////////////////////////////////////////
 
 int main(int argc, char* argv[] ){
+  if(argc == 2 && strcmp(argv[1], "tester") == 0){ //comparer si le mot donne est egale a "tester"
+        tester();
+    return EXIT_SUCCESS;
+  }
+
   if(argc < 3){
     Help(std::cout, argv[0]);
     return EXIT_FAILURE;
