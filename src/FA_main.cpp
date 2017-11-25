@@ -15,6 +15,7 @@
 #include "ToGraph.h"
 
 // seconde partie du projet
+
 #include "ExpressionRationnelle.h"
 #include "parser.hpp"
 
@@ -26,13 +27,130 @@ using namespace std;
 ////////////////////////////////////////////////////////////////////////////////
 //cette fctn est appele si "tester" est passe en parametre dans programme
 // ./ndet tester
+
 void tester(){
-  string automate_path="AND1";
-  sAutoNDE automate_d;
-  FromFile(automate_d, "exemples/" + automate_path+ ".txt");
-  if(EstDeterministe(automate_d)){cout<<"automate est deterministe"<<endl;}
-    else{cout<<"Non deterministe"<<endl;}
+  
+  int nb_total = 17;
+   //tester tout les automates
+   string liste[] = {"AD1","AD2","AND1","AND2","AND3","AND4","AND5","AND6","AND7","AND8","ANDE1","ANDE2","ANDE3","ANDE4","ANDE5","ANDE6","ANDE7"};
+
+   string reponse;
+   bool i=true;
+
+   
+
+   while(i){
+      cout<<"Donnez-moi le numero d'automate a tester de 0 a "<<nb_total-1<<endl;
+      cout<<"Pour sortir tapez N"<<endl;
+      cin>>reponse;
+      //system("clear");
+
+      int reponse_int=atoi(reponse.c_str());
+      //cout<<"votre reponse -'0'est"<<reponse-'0'<<endl;
+      if(reponse.compare("N")!=0 && (reponse_int>=0) && (reponse_int<nb_total)){
+        sAutoNDE automate;
+        cout<<"do smth"<<endl;
+        cout<<"---------------"<<endl;
+        FromFile(automate, "exemples/" + liste[reponse_int] + ".txt");
+
+        cout<<endl<<"on teste automate: "<< liste[reponse_int] << endl;
+        cout << automate << endl;
+        cout<<"------------------------------"<<endl;
+        
+        cout<<"    Essentiel de  "<<liste[reponse_int] <<endl;
+
+        cout<<"nb_etats--  "<<automate.nb_etats<<endl;
+        cout<<"nb_symbs--  "<<automate.nb_symbs<<endl;
+        cout<<"nb_finaux-  "<<automate.nb_finaux<<endl;
+        cout<<"initial---  "<<automate.initial<<endl;
+        cout<<"finaux----  "<<automate.finaux<<endl;
+        cout<<"trans-----  "<<automate.trans<<endl;
+        cout<<"epsilon---  "<<automate.epsilon<<endl;
+
+        cout<<"------------------------------"<<endl;
+
+
+        //------------Deterministe?-----------
+
+        cout << "Deterministe? : " << ((EstDeterministe(automate))? "Oui" : "Non") << endl;
+        cout<<"------------------------------"<<endl;
+
+        
+
+        //------------Fermeture--------------
+        etatset_t ferm;
+        ferm.insert(1);
+        ferm.insert(2);
+        cout << "Fction fermeture pour etats" << ferm <<endl;
+
+        Fermeture(automate, ferm);
+        cout <<"le resultat est "<< ferm <<  endl;
+        cout<<"------------------------------"<<endl;
+
+
+
+        //------------Delta--------------
+        etatset_t delta;
+        delta.insert(1);
+        delta.insert(2);
+
+        cout<<"Verification de Delta depuis des etats {1,2}}(comme exemple) et lettre 'a' et puis 'b'"<<endl;
+        cout << "Delta(" << "{1,2}"<< ", a) = " << Delta(automate, delta, 'a') << endl;
+        cout << "Delta(" << "{1,2}"<< ", b) = " << Delta(automate, delta, 'b') << endl;
+        cout<<"------------------------------"<<endl;
+
+
+        //------------ExisteEtatFinal--------------
+
+        etatset_t fin;
+        fin.insert(1);
+        fin.insert(0);
+        cout << "Est-ce que ds le set" << fin << " il y a les etats finaux-->" << ((ExisteEtatFinal (automate, fin))? "Oui" : "Non") << endl;
+        cout<<"------------------------------"<<endl;
+
+
+         //------------Accept--------------
+        cout << "Ces mots sont acceptes? "<< endl;
+
+        cout << "Mot vide : " << ((Accept(automate, ""))? "Oui": "Non") << endl;
+        cout << "Mot aaa  : " << ((Accept(automate, "aaa"))? "Oui": "Non")  << endl;
+        cout << "Mot bbb  : " << ((Accept(automate, "bbb"))? "Oui": "Non")  << endl;
+        cout << "Mot aba  : " << ((Accept(automate, "aba"))? "Oui": "Non")  << endl;
+        cout << "Mot abb  : " << ((Accept(automate, "abb"))? "Oui": "Non")  << endl;
+        cout << "Mot abab : " << ((Accept(automate,"abab"))? "Oui": "Non")  << endl;
+        cout << "Mot bab  : " << ((Accept(automate, "bab"))? "Oui": "Non")  << endl;
+
+        cout<<"------------------------------"<<endl;
+
+        
+        //------------Determiniser--------------
+        cout << "Determiniser automate " << endl;
+        sAutoNDE automateDet = Determinize(automate);
+        cout << "automate determinise est " <<automateDet<<endl;
+        cout<<"Verification avec fctn EstDeterministe"<<endl;
+
+        cout <<"deterministe? "<< ((EstDeterministe(automateDet))? "Oui" : "Non")<< endl;
+        cout<<"------------------------------"<<endl;
+
+      }
+
+      else if (reponse.compare("N")==0){
+        i=false;
+      }
+
+      else{
+        cout<<"!!!!!!!!!!!!!!!!!!!!!!"<<endl;
+        cout<<"Reessayez. Ce numero est inconnu!"<<endl;
+        cout<<"!!!!!!!!!!!!!!!!!!!!!!"<<endl;
+      }
+     
+    }
+    cout<<"##################"<<endl;
+    cout<<"#     Bye Bye    #"<<endl;
+    cout<<"##################"<<endl;
+    
 }
+
 
 ////////////////////////////////////////////////////////////////////////////////
 
@@ -56,6 +174,7 @@ int main(int argc, char* argv[] ){
         tester();
     return EXIT_SUCCESS;
   }
+  
 
   if(argc < 3){
     Help(std::cout, argv[0]);

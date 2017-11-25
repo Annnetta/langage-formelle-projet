@@ -3,9 +3,11 @@
 #define TOGRAPH_H
 //******************************************************************************
 
-#include <string>
-
 #include "FA_types.h"
+#include "Accept.h"
+#include "FA_tools.h"
+
+using namespace std;
 
 ////////////////////////////////////////////////////////////////////////////////
 
