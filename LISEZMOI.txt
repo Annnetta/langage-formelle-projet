@@ -1,7 +1,7 @@
 Rendu du projet LIIFLC 2017-2018
 ================================
 
-
+PARSHUTO Hanna	p1512677
 
 Contenu de l'archive
 --------------------
@@ -25,6 +25,13 @@ http://www.cplusplus.com/reference/
 
 Commentaires
 ------------
+
+################################
+1)Pour tester vous pouvez utiliser ./ndet tester
+ou il faut saisir le numero d'automate a afficher de 0 a 16. 0-AD1, 1-AD2, 2-AND1 etc..
+
+2)j'ai aussi rendu le dossier "exemples" pour le raison de point 1), car la fonction de verification "tester" utilise les noms des automates de dossier exemples
+################################
 
 Cet exemple d'archive est fournie aux étudiants comme projet de départ pde l'UE LIFLC 2017-2018
 
