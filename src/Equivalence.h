@@ -3,12 +3,31 @@
 #define EQUIVALENCE_H
 //******************************************************************************
 
+#include <iostream>
+#include <algorithm>
+#include <string.h>
+#include <stdio.h>
+#include <vector>
+#include <set>
+#include <string>
+
+#include "Accept.h"
 #include "FA_types.h"
+#include "FA_tools.h"
+
+using namespace std;
 
 ////////////////////////////////////////////////////////////////////////////////
 
 std::string Automate2ExpressionRationnelle(sAutoNDE at);
 
+////////////////////////////////////////////////////////////////////////////////
+bool comparer_retour(const sAutoNDE& a1, const sAutoNDE& a2, string mot);
+
+////////////////////////////////////////////////////////////////////////////////
+/*
+bool print_str(const sAutoNDE& a1, const sAutoNDE& a2, string str,std::string prefix,const int n, const int length);
+*/
 ////////////////////////////////////////////////////////////////////////////////
 
 // détermine la pseudo équivalence par comparaison de tous les mots de Sigma* de longueur < à word_size_max

@@ -22,8 +22,11 @@ sAutoNDE Determinize(const sAutoNDE& at);
 
 ///////////////////////////////////////////////////////////////////////////////
 
-void Determinize_recursive(const sAutoNDE& atND, sAutoNDE & atD, map_t& m, const etatset_t& e_set, etat_t& e);
+/*void Determinize_recursive(const sAutoNDE& atND, sAutoNDE & atD, map_t& m, const etatset_t& e_set, etat_t& e);
+*/
 
+// convertit une liste d'état en chaine de caractères
+string toStringEtatset(etatset_t e);
 //******************************************************************************
 #endif // DETERMINIZE_H
 //******************************************************************************

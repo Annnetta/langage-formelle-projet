@@ -25,6 +25,25 @@
 using namespace std;
 
 ////////////////////////////////////////////////////////////////////////////////
+
+void test(){
+  int size=3;
+  sAutoNDE at1,at2;
+  string ato1="AND1";
+  string ato2="AND1";
+  FromFile(at1, "exemples/" + ato1 + ".txt");
+  FromFile(at2, "exemples/" + ato2 + ".txt");
+  //cout<<(PseudoEquivalent(at1, at2, size));
+
+cout << " PseudoEquivalent?? : " <<((PseudoEquivalent(at1, at2, size))? "Oui" : "Non") << endl;
+
+  //PseudoEquivalent(at1, at2, size); 
+  
+}
+
+
+
+
 //cette fctn est appele si "tester" est passe en parametre dans programme
 // ./ndet tester
 
@@ -77,29 +96,19 @@ void tester(){
 
         
 
-        //------------Fermeture--------------
-        etatset_t ferm;
-        ferm.insert(1);
-        ferm.insert(2);
-        cout << "Fction fermeture pour etats" << ferm <<endl;
+	
+        //------------Determiniser--------------
+        cout << "Determiniser automate " << endl;
+        sAutoNDE automateDet = Determinize(automate);
+        cout << "automate determinise est " <<automateDet<<endl;
+        cout<<"Verification avec fctn EstDeterministe"<<endl;
 
-        Fermeture(automate, ferm);
-        cout <<"le resultat est "<< ferm <<  endl;
+        cout <<"deterministe? "<< ((EstDeterministe(automateDet))? "Oui" : "Non")<< endl;
         cout<<"------------------------------"<<endl;
 
 
 
-        //------------Delta--------------
-        etatset_t delta;
-        delta.insert(1);
-        delta.insert(2);
-
-        cout<<"Verification de Delta depuis des etats {1,2}}(comme exemple) et lettre 'a' et puis 'b'"<<endl;
-        cout << "Delta(" << "{1,2}"<< ", a) = " << Delta(automate, delta, 'a') << endl;
-        cout << "Delta(" << "{1,2}"<< ", b) = " << Delta(automate, delta, 'b') << endl;
-        cout<<"------------------------------"<<endl;
-
-
+       
         //------------ExisteEtatFinal--------------
 
         etatset_t fin;
@@ -108,6 +117,8 @@ void tester(){
         cout << "Est-ce que ds le set" << fin << " il y a les etats finaux-->" << ((ExisteEtatFinal (automate, fin))? "Oui" : "Non") << endl;
         cout<<"------------------------------"<<endl;
 
+
+	
 
          //------------Accept--------------
         cout << "Ces mots sont acceptes? "<< endl;
@@ -122,15 +133,30 @@ void tester(){
 
         cout<<"------------------------------"<<endl;
 
-        
-        //------------Determiniser--------------
-        cout << "Determiniser automate " << endl;
-        sAutoNDE automateDet = Determinize(automate);
-        cout << "automate determinise est " <<automateDet<<endl;
-        cout<<"Verification avec fctn EstDeterministe"<<endl;
+	 //------------Delta--------------
+        etatset_t delta;
+        delta.insert(1);
+        delta.insert(2);
 
-        cout <<"deterministe? "<< ((EstDeterministe(automateDet))? "Oui" : "Non")<< endl;
+        cout<<"Verification de Delta depuis des etats {1,2}}(comme exemple) et lettre 'a' et puis 'b'"<<endl;
+        cout << "Delta(" << "{1,2}"<< ", a) = " << Delta(automate, delta, 'a') << endl;
+        cout << "Delta(" << "{1,2}"<< ", b) = " << Delta(automate, delta, 'b') << endl;
         cout<<"------------------------------"<<endl;
+
+	
+        //------------Fermeture--------------
+        etatset_t ferm;
+        ferm.insert(1);
+        ferm.insert(2);
+        cout << "Fction fermeture pour etats" << ferm <<endl;
+
+        Fermeture(automate, ferm);
+        cout <<"le resultat est "<< ferm <<  endl;
+        cout<<"------------------------------"<<endl;
+
+
+
+        
 
       }
 
@@ -172,6 +198,11 @@ void Help(std::ostream& out, char *s){
 int main(int argc, char* argv[] ){
   if(argc == 2 && strcmp(argv[1], "tester") == 0){ //comparer si le mot donne est egale a "tester"
         tester();
+    return EXIT_SUCCESS;
+  }
+
+  if(argc == 2 && strcmp(argv[1], "test") == 0){ //comparer si le mot donne est egale a "tester"
+        test();
     return EXIT_SUCCESS;
   }
   
@@ -232,7 +263,7 @@ int main(int argc, char* argv[] ){
 	  nb_ofiles = 0;
           break;
         case 3: //min
-          expr = argv[++i];
+          in1 = argv[++i];
           out = argv[++i];
 	  nb_ifiles = 1;
 	  nb_ofiles = 1;
