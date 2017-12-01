@@ -29,15 +29,12 @@ using namespace std;
 void test(){
   int size=3;
   sAutoNDE at1,at2;
-  string ato1="AND1";
-  string ato2="AND1";
+  string ato1="AND2";
+  string ato2="AND2";
   FromFile(at1, "exemples/" + ato1 + ".txt");
   FromFile(at2, "exemples/" + ato2 + ".txt");
-  //cout<<(PseudoEquivalent(at1, at2, size));
-
-cout << " PseudoEquivalent?? : " <<((PseudoEquivalent(at1, at2, size))? "Oui" : "Non") << endl;
-
-  //PseudoEquivalent(at1, at2, size); 
+  bool res=PseudoEquivalent(at1, at2, size);
+  cout << " PseudoEquivalent?? : " <<(res? "Oui" : "Non") << endl;
   
 }
 

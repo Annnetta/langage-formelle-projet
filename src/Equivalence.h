@@ -22,12 +22,15 @@ using namespace std;
 std::string Automate2ExpressionRationnelle(sAutoNDE at);
 
 ////////////////////////////////////////////////////////////////////////////////
+
+//Fctn qui verifie si le retour de deux automates est le meme
 bool comparer_retour(const sAutoNDE& a1, const sAutoNDE& a2, string mot);
 
 ////////////////////////////////////////////////////////////////////////////////
-/*
+
+//Fctn recursive qui genere est verifie toutes les cobinaisons des mots
 bool print_str(const sAutoNDE& a1, const sAutoNDE& a2, string str,std::string prefix,const int n, const int length);
-*/
+
 ////////////////////////////////////////////////////////////////////////////////
 
 // détermine la pseudo équivalence par comparaison de tous les mots de Sigma* de longueur < à word_size_max
