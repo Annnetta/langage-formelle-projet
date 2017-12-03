@@ -27,7 +27,8 @@ using namespace std;
 ////////////////////////////////////////////////////////////////////////////////
 
 void test(){
-  int size=3;
+  
+  /*int size=3;
   sAutoNDE at1,at2;
   string ato1="AND2";
   string ato2="AND2";
@@ -35,6 +36,17 @@ void test(){
   FromFile(at2, "exemples/" + ato2 + ".txt");
   bool res=PseudoEquivalent(at1, at2, size);
   cout << " PseudoEquivalent?? : " <<(res? "Oui" : "Non") << endl;
+  */
+
+  sAutoNDE at1;
+  string ato1="AND1";
+  FromFile(at1, "exemples/" + ato1 + ".txt");
+  cout<<at1<<endl;
+  cout<<"nb_etats--  "<<at1.nb_etats<<endl;
+  cout<<"nb_symbs--  "<<at1.nb_symbs<<endl;
+  cout<<"nb_finaux-  "<<at1.nb_finaux<<endl;
+  cout<<"finaux init sont  "<<at1.finaux<<endl;
+  Minimize(at1);
   
 }
 
