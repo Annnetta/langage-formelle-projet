@@ -94,7 +94,59 @@ bool PseudoEquivalent(const sAutoNDE& a1, const sAutoNDE& a2, unsigned int word_
 ////////////////////////////////////////////////////////////////////////////////
 
 bool Equivalent(const sAutoNDE& a1, const sAutoNDE& a2) {
-  //TODO définir cette fonction
+
+//	- même nombre d'états
+//   - même état initial
+//   - mêmes états finaux
+//   - même table de transition à un renommage des états près
+
+	//etape 1 :Minimiser 2 automates
+  sAutoNDE min_a1;
+  sAutoNDE min_a2;
+
+  min_a1=Minimize(a1);
+  min_a2=Minimize(a2);
+
+  	//etape 2: le meme nbre de symboles
+  if(min_a1.nb_symbs != min_a2.nb_symbs){
+  	cout<<"Le nombre de symboles est different"<<endl;
+  	return false;
+  }
+
+  //etape 3: même nombre d'états
+  if(min_a1.nb_etats!=min_a2.nb_etats){
+  	cout<<"Le nombre d'etats est different "<<endl;
+  	return false;
+  }
+
+  //etape 4: même état initial
+  if(min_a1.initial!= min_a2.initial){
+  	cout<<"N'ont pas le meme etat initial  "<<endl;
+  	return false;
+  }
+
+  //etape 5: mêmes nombre des etats finaux
+  if(min_a1.nb_finaux!=min_a2.nb_finaux){
+  	cout<<"N'ont pas le meme nbre des etats finaux  "<<endl;
+  	return false;
+  }
+  else{
+
+	set<etat_t>::iterator iter_f;
+  	for(iter_f=min_a1.finaux.begin(); iter_f!=min_a1.finaux.end(); iter_f++){ //on parcourt tout les etat d'etats finaux
+		if(min_a2.finaux.find(*iter_f)==min_a2.finaux.end()) {
+			cout<<"N'ont pas les memes etats finaux"<<endl;
+			return false;
+
+		}
+  	}
+  }
+
+
+
+  cout<<"-------------------------"<<endl;
+ 
+
 
   return true;
 }

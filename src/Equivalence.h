@@ -14,6 +14,7 @@
 #include "Accept.h"
 #include "FA_types.h"
 #include "FA_tools.h"
+#include "Minimize.h"
 
 using namespace std;
 

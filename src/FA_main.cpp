@@ -38,8 +38,9 @@ void test(){
   cout << " PseudoEquivalent?? : " <<(res? "Oui" : "Non") << endl;
   */
 
+/*
   sAutoNDE at1;
-  string ato1="AND1";
+  string ato1="ANDE7";
   FromFile(at1, "exemples/" + ato1 + ".txt");
   cout<<at1<<endl;
   cout<<"nb_etats--  "<<at1.nb_etats<<endl;
@@ -48,7 +49,59 @@ void test(){
   cout<<"finaux init sont  "<<at1.finaux<<endl;
   Minimize(at1);
   
+*/
+
+  int nb_total = 17;
+   //tester tout les automates
+   string liste[] = {"AD1","AD2","AND1","AND2","AND3","AND4","AND5","AND6","AND7","AND8","ANDE1","ANDE2","ANDE3","ANDE4","ANDE5","ANDE6","ANDE7"};
+
+   string reponse;
+   bool i=true;
+
+   
+
+   while(i){
+      cout<<"Donnez-moi le numero d'automate a tester de 0 a "<<nb_total-1<<endl;
+      cout<<"Pour sortir tapez N"<<endl;
+      cin>>reponse;
+      //system("clear");
+
+      int reponse_int=atoi(reponse.c_str());
+      if(reponse.compare("N")!=0 && (reponse_int>=0) && (reponse_int<nb_total)){
+        sAutoNDE automate;
+        cout<<"---------------"<<endl;
+        FromFile(automate, "exemples/" + liste[reponse_int] + ".txt");
+
+        cout<<automate<<endl;
+        cout<<"nb_etats--  "<<automate.nb_etats<<endl;
+        cout<<"nb_symbs--  "<<automate.nb_symbs<<endl;
+        cout<<"nb_finaux-  "<<automate.nb_finaux<<endl;
+        cout<<"finaux init sont  "<<automate.finaux<<endl;
+        Minimize(automate);
+
+        
+        cout<<"----------------------"<<endl;
+        cout<<automate<<endl;
+        }
+
+      else if (reponse.compare("N")==0){
+        i=false;
+      }
+
+      else{
+        cout<<"!!!!!!!!!!!!!!!!!!!!!!"<<endl;
+        cout<<"Reessayez. Ce numero est inconnu!"<<endl;
+        cout<<"!!!!!!!!!!!!!!!!!!!!!!"<<endl;
+      }
+     
+    }
+    cout<<"##################"<<endl;
+    cout<<"#     Bye Bye    #"<<endl;
+    cout<<"##################"<<endl;
+    
 }
+
+
 
 
 
@@ -77,7 +130,6 @@ void tester(){
       //cout<<"votre reponse -'0'est"<<reponse-'0'<<endl;
       if(reponse.compare("N")!=0 && (reponse_int>=0) && (reponse_int<nb_total)){
         sAutoNDE automate;
-        cout<<"do smth"<<endl;
         cout<<"---------------"<<endl;
         FromFile(automate, "exemples/" + liste[reponse_int] + ".txt");
 
