@@ -64,26 +64,40 @@ void test(){
       cout<<"Donnez-moi le numero d'automate a tester de 0 a "<<nb_total-1<<endl;
       cout<<"Pour sortir tapez N"<<endl;
       cin>>reponse;
-      //system("clear");
 
       int reponse_int=atoi(reponse.c_str());
       if(reponse.compare("N")!=0 && (reponse_int>=0) && (reponse_int<nb_total)){
         sAutoNDE automate;
+        sAutoNDE automate2;
+        cout<<"---------------"<<endl;
+        cout<<"---------------"<<endl;
+        cout<<"---------------"<<endl;
         cout<<"---------------"<<endl;
         FromFile(automate, "exemples/" + liste[reponse_int] + ".txt");
+
+        FromFile(automate2, "exemples/AND20.txt");
 
         cout<<automate<<endl;
         cout<<"nb_etats--  "<<automate.nb_etats<<endl;
         cout<<"nb_symbs--  "<<automate.nb_symbs<<endl;
         cout<<"nb_finaux-  "<<automate.nb_finaux<<endl;
         cout<<"finaux init sont  "<<automate.finaux<<endl;
-        Minimize(automate);
+        //automate=Minimize(automate);
 
         
-        cout<<"----------------------"<<endl;
-        cout<<automate<<endl;
+        cout<<"---------MINIMIZE:-------------"<<endl;
+      //  cout<<automate<<endl;
+
+
+        cout<<"---------Equivalence-------------"<<endl;
+        cout << ((Equivalent(automate, automate))? "Deux automates sont equivalents": "ne sont pas equivalents")  << endl;
+
+        
         }
 
+
+
+        
       else if (reponse.compare("N")==0){
         i=false;
       }

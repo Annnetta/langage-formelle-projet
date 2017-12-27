@@ -104,8 +104,15 @@ bool Equivalent(const sAutoNDE& a1, const sAutoNDE& a2) {
   sAutoNDE min_a1;
   sAutoNDE min_a2;
 
+
+  cout<<"-----AUTOMATE 1 ------"<<endl;
   min_a1=Minimize(a1);
+  //min_a1=a1;
+
+  cout<<"----- AUTOMATE 2 ------"<<endl;
   min_a2=Minimize(a2);
+  //min_a2=a2; 
+
 
   	//etape 2: le meme nbre de symboles
   if(min_a1.nb_symbs != min_a2.nb_symbs){
@@ -113,17 +120,20 @@ bool Equivalent(const sAutoNDE& a1, const sAutoNDE& a2) {
   	return false;
   }
 
+
   //etape 3: même nombre d'états
   if(min_a1.nb_etats!=min_a2.nb_etats){
   	cout<<"Le nombre d'etats est different "<<endl;
   	return false;
   }
 
+
   //etape 4: même état initial
   if(min_a1.initial!= min_a2.initial){
   	cout<<"N'ont pas le meme etat initial  "<<endl;
   	return false;
   }
+
 
   //etape 5: mêmes nombre des etats finaux
   if(min_a1.nb_finaux!=min_a2.nb_finaux){
@@ -142,13 +152,38 @@ bool Equivalent(const sAutoNDE& a1, const sAutoNDE& a2) {
   	}
   }
 
-
-
-  cout<<"-------------------------"<<endl;
  
 
+  //etape 6: même table de transition 
+
+
+	cout<<"trans"<<min_a1.trans<<endl;
+ 
+
+	for (size_t i=0; i<min_a1.trans.size(); i++ ){
+		for (size_t sym=0; sym<min_a1.trans[i].size(); sym++){
+				
+			set<etat_t>::iterator iter1, iter2;
+			iter1=min_a1.trans[i][sym].begin();
+			iter2=min_a2.trans[i][sym].begin();
+
+			if(*iter1==*iter2){
+				cout<<"etat "<<i<< " ok"<<endl;
+			}
+
+			else{
+				cout<<"etat "<<i<<" par symbole "<<char(sym+ASCII_A)<<"  ne correspond pas avec 2eme automate"<<endl;
+				return false;
+			}
+				
+		}		
+	}
+	  				
+	
 
   return true;
 }
 
+
 //******************************************************************************
+
